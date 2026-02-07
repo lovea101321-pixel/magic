@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>象棋卜卦 - 點亮前路</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600&family=Noto+Sans+TC:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FDFBF7;
+            --text-main: #3E3E3E; /* 一般字體黑色 */
+            --text-accent: #B08D79; /* 重點奶茶色 */
+            --piece-border: #C6A490;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 60px 20px 40px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        /* 標題對調：變為奶茶色 */
+        h1 {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 2.2rem;
+            color: var(--text-accent);
+            margin-bottom: 10px;
+            letter-spacing: 6px;
+        }
+
+        /* 詩句對調：變為黑色 */
+        .intro-poetry {
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.15rem;
+            color: var(--text-main);
+            line-height: 2;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .meditation-box {
+            margin-bottom: 20px;
+        }
+        .meditation-hint {
+            font-size: 0.9rem;
+            color: var(--text-accent);
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            font-weight: 400;
+        }
+        .spirit-guide {
+            font-size: 1.1rem;
+            font-family: 'Noto Serif TC', serif;
+            color: #7A6A53;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .cta-btn {
+            background-color: var(--text-accent);
+            color: white;
+            border: none;
+            padding: 16px 50px;
+            font-size: 1.25rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(176, 141, 121, 0.3);
+            letter-spacing: 2px;
+            font-family: 'Noto Serif TC', serif;
+            margin-bottom: 30px;
+        }
+
+        .secondary-btn {
+            display: none;
+            background-color: transparent;
+            color: var(--text-accent);
+            border: 1px solid var(--text-accent);
+            padding: 10px 30px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 10px auto 0;
+            transition: all 0.3s ease;
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        .core-description {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.8;
+            max-width: 450px;
+            margin: 0 auto 40px;
+            text-align: justify;
+            border-left: 2px solid var(--text-accent);
+            padding-left: 20px;
+        }
+
+        .divination-area {
+            position: relative;
+            height: 320px;
+            width: 320px;
+            margin: 20px auto;
+            display: none;
+        }
+
+        #result-hint {
+            display: none;
+            color: #D64F4F;
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            background: #FFF5F5;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px dashed #D64F4F;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chess-piece {
+            width: 65px;
+            height: 65px;
+            background-color: #FFF;
+            border: 2px solid var(--piece-border);
+            border-radius: 50%;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .piece-red { color: #D64F4F; }
+        .piece-black { color: #333; }
+
+        .pos-1 { top: 0; left: 50%; transform: translateX(-50%); } 
+        .pos-2 { top: 50%; right: 0; transform: translateY(-50%); } 
+        .pos-3 { bottom: 0; left: 50%; transform: translateX(-50%); } 
+        .pos-4 { top: 50%; left: 0; transform: translateY(-50%); } 
+        .pos-5 { top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; border: 3px solid var(--text-accent); }
+
+        .show .chess-piece { opacity: 1; }
+        .show .pos-1 { transform: translateX(-50%) scale(1); }
+        .show .pos-2 { transform: translateY(-50%) scale(1); }
+        .show .pos-3 { transform: translateX(-50%) scale(1); }
+        .show .pos-4 { transform: translateY(-50%) scale(1); }
+        .show .pos-5 { transform: translate(-50%, -50%) scale(1.15); }
+
+        .footer {
+            margin-top: 40px;
+            padding: 50px 20px;
+            width: 100%;
+            background-color: #F4EFE6;
+            text-align: center;
+        }
+
+        .qr-code {
+            width: 160px;
+            height: 160px;
+            margin: 15px 0;
+            border: 5px solid white;
+            border-radius: 10px;
+        }
+
+        .line-btn {
+            display: inline-block;
+            background-color: #06C755;
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            .divination-area { width: 280px; height: 280px; }
+            .chess-piece { width: 55px; height: 55px; font-size: 1.5rem; }
+            .spirit-guide { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>象棋卜卦</h1>
+
+        <div class="intro-poetry">
+            在迷霧裡，我為你點亮一盞燈<br>
+            照見前方，也照見你自己。
+        </div>
+
+        <div id="initial-action">
+            <div class="meditation-box">
+                <div class="meditation-hint">靜心冥想你的問題，接著按鈕抓卦</div>
+                <div class="spirit-guide">親愛的指導靈，我想問...........</div>
+            </div>
+            <button class="cta-btn" id="startBtn" onclick="startDivination()">立即開始卜卦</button>
+        </div>
+
+        <div class="core-description">
+            卜卦的作用不只是給答案，而是幫你在迷惘時看清方向。<br><br>
+            它能提供決策參考、分析問題根源、預測可能的走向，並讓你找到更適合的解決方式。<br><br>
+            每一次解卦，也都是重新認識自己的時刻，能提升自信、促進反思，讓你更有力量面對人生的不確定。
+        </div>
+
+        <div class="divination-area" id="board"></div>
+        
+        <div id="result-hint">
+            截圖卜卦結果回傳<br>
+            <span style="font-size: 0.8rem; font-weight: normal;">（一個問題一掛。以第一次抽的為主）</span>
+            <br>
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #FFDADA;">
+                <div class="meditation-hint">靜心冥想你的問題，接著按鈕抓卦</div>
+                <div class="spirit-guide" style="font-size: 0.95rem; margin-bottom: 10px;">親愛的指導靈，我想問...........</div>
+                <button class="secondary-btn" id="againBtn" onclick="startDivination()">問第二卦</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p style="color:var(--text-accent); font-family: 'Noto Serif TC'; font-weight: bold; font-size: 1.2rem;">預約一對一解卦</p>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://lin.ee/CJuYGTu" alt="Line QR" class="qr-code">
+        <br>
+        <a href="https://lin.ee/CJuYGTu" target="_blank" class="line-btn">點擊連結加入 LINE</a>
+        <p style="font-size: 0.8rem; color: #999; margin-top: 15px;">LINE ID: @CJuYGTu</p>
+    </footer>
+
+    <script>
+        const allPieces = [
+            { name: "帥", color: "red" }, { name: "仕", color: "red" }, { name: "仕", color: "red" },
+            { name: "相", color: "red" }, { name: "相", color: "red" }, { name: "俥", color: "red" },
+            { name: "俥", color: "red" }, { name: "傌", color: "red" }, { name: "傌", color: "red" },
+            { name: "炮", color: "red" }, { name: "炮", color: "red" }, { name: "兵", color: "red" },
+            { name: "兵", color: "red" }, { name: "兵", color: "red" }, { name: "兵", color: "red" }, { name: "兵", color: "red" },
+            { name: "將", color: "black" }, { name: "士", color: "black" }, { name: "士", color: "black" },
+            { name: "象", color: "black" }, { name: "象", color: "black" }, { name: "車", color: "black" },
+            { name: "車", color: "black" }, { name: "馬", color: "black" }, { name: "馬", color: "black" },
+            { name: "包", color: "black" }, { name: "包", color: "black" }, { name: "卒", color: "black" },
+            { name: "卒", color: "black" }, { name: "卒", color: "black" }, { name: "卒", color: "black" }, { name: "卒", color: "black" }
+        ];
+
+        function startDivination() {
+            const initialAction = document.getElementById('initial-action');
+            const againBtn = document.getElementById('againBtn');
+            const board = document.getElementById('board');
+            const hint = document.getElementById('result-hint');
+
+            initialAction.style.display = "none";
+            againBtn.disabled = true;
+            againBtn.innerText = "靜心顯像中...";
+            
+            board.style.display = "block";
+            board.innerHTML = "";
+            board.classList.remove('show');
+
+            let shuffled = [...allPieces].sort(() => 0.5 - Math.random());
+            let selected = shuffled.slice(0, 5);
+
+            selected.forEach((piece, index) => {
+                const div = document.createElement('div');
+                div.className = `chess-piece piece-${piece.color} pos-${index + 1}`;
+                div.innerText = piece.name;
+                board.appendChild(div);
+            });
+
+            setTimeout(() => {
+                board.classList.add('show');
+                hint.style.display = "block";
+                againBtn.disabled = false;
+                againBtn.style.display = "block";
+                againBtn.innerText = "問第二卦";
+                
+                board.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
+        }
+    </script>
+</body>
+</html>
