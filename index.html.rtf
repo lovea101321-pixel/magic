@@ -1,0 +1,312 @@
+{\rtf1\ansi\ansicpg950\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="zh-TW">\
+<head>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <title>\uc0\u35937 \u26827 \u21340 \u21350  - \u40670 \u20142 \u21069 \u36335 </title>\
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600&family=Noto+Sans+TC:wght@300;400&display=swap" rel="stylesheet">\
+    <style>\
+        :root \{\
+            --bg-color: #FDFBF7;\
+            --text-main: #3E3E3E; /* \uc0\u19968 \u33324 \u23383 \u39636 \u40657 \u33394  */\
+            --text-accent: #B08D79; /* \uc0\u37325 \u40670 \u22902 \u33590 \u33394  */\
+            --piece-border: #C6A490;\
+        \}\
+\
+        body \{\
+            font-family: 'Noto Sans TC', sans-serif;\
+            background-color: var(--bg-color);\
+            color: var(--text-main);\
+            margin: 0;\
+            padding: 0;\
+            display: flex;\
+            flex-direction: column;\
+            align-items: center;\
+        \}\
+\
+        .container \{\
+            width: 100%;\
+            max-width: 600px;\
+            padding: 60px 20px 40px;\
+            text-align: center;\
+            box-sizing: border-box;\
+        \}\
+\
+        /* \uc0\u27161 \u38988 \u23565 \u35519 \u65306 \u35722 \u28858 \u22902 \u33590 \u33394  */\
+        h1 \{\
+            font-family: 'Noto Serif TC', serif;\
+            font-size: 2.2rem;\
+            color: var(--text-accent);\
+            margin-bottom: 10px;\
+            letter-spacing: 6px;\
+        \}\
+\
+        /* \uc0\u35433 \u21477 \u23565 \u35519 \u65306 \u35722 \u28858 \u40657 \u33394  */\
+        .intro-poetry \{\
+            font-family: 'Noto Serif TC', serif;\
+            font-size: 1.15rem;\
+            color: var(--text-main);\
+            line-height: 2;\
+            margin-bottom: 40px;\
+            font-weight: 600;\
+        \}\
+\
+        .meditation-box \{\
+            margin-bottom: 20px;\
+        \}\
+        .meditation-hint \{\
+            font-size: 0.9rem;\
+            color: var(--text-accent);\
+            letter-spacing: 2px;\
+            margin-bottom: 5px;\
+            font-weight: 400;\
+        \}\
+        .spirit-guide \{\
+            font-size: 1.1rem;\
+            font-family: 'Noto Serif TC', serif;\
+            color: #7A6A53;\
+            font-weight: 600;\
+            letter-spacing: 1px;\
+            margin-bottom: 15px;\
+        \}\
+\
+        .cta-btn \{\
+            background-color: var(--text-accent);\
+            color: white;\
+            border: none;\
+            padding: 16px 50px;\
+            font-size: 1.25rem;\
+            border-radius: 50px;\
+            cursor: pointer;\
+            transition: all 0.3s ease;\
+            box-shadow: 0 4px 15px rgba(176, 141, 121, 0.3);\
+            letter-spacing: 2px;\
+            font-family: 'Noto Serif TC', serif;\
+            margin-bottom: 30px;\
+        \}\
+\
+        .secondary-btn \{\
+            display: none;\
+            background-color: transparent;\
+            color: var(--text-accent);\
+            border: 1px solid var(--text-accent);\
+            padding: 10px 30px;\
+            font-size: 1rem;\
+            border-radius: 50px;\
+            cursor: pointer;\
+            margin: 10px auto 0;\
+            transition: all 0.3s ease;\
+            font-family: 'Noto Serif TC', serif;\
+        \}\
+\
+        .core-description \{\
+            font-size: 0.95rem;\
+            color: #555;\
+            line-height: 1.8;\
+            max-width: 450px;\
+            margin: 0 auto 40px;\
+            text-align: justify;\
+            border-left: 2px solid var(--text-accent);\
+            padding-left: 20px;\
+        \}\
+\
+        .divination-area \{\
+            position: relative;\
+            height: 320px;\
+            width: 320px;\
+            margin: 20px auto;\
+            display: none;\
+        \}\
+\
+        #result-hint \{\
+            display: none;\
+            color: #D64F4F;\
+            font-weight: bold;\
+            margin-top: 20px;\
+            font-size: 1.1rem;\
+            background: #FFF5F5;\
+            padding: 20px;\
+            border-radius: 12px;\
+            border: 1px dashed #D64F4F;\
+            animation: fadeIn 1s ease forwards;\
+        \}\
+\
+        @keyframes fadeIn \{\
+            from \{ opacity: 0; transform: translateY(10px); \}\
+            to \{ opacity: 1; transform: translateY(0); \}\
+        \}\
+\
+        .chess-piece \{\
+            width: 65px;\
+            height: 65px;\
+            background-color: #FFF;\
+            border: 2px solid var(--piece-border);\
+            border-radius: 50%;\
+            position: absolute;\
+            display: flex;\
+            justify-content: center;\
+            align-items: center;\
+            font-family: 'Noto Serif TC', serif;\
+            font-size: 1.8rem;\
+            font-weight: bold;\
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);\
+            opacity: 0;\
+            transform: scale(0.5);\
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);\
+        \}\
+\
+        .piece-red \{ color: #D64F4F; \}\
+        .piece-black \{ color: #333; \}\
+\
+        .pos-1 \{ top: 0; left: 50%; transform: translateX(-50%); \} \
+        .pos-2 \{ top: 50%; right: 0; transform: translateY(-50%); \} \
+        .pos-3 \{ bottom: 0; left: 50%; transform: translateX(-50%); \} \
+        .pos-4 \{ top: 50%; left: 0; transform: translateY(-50%); \} \
+        .pos-5 \{ top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; border: 3px solid var(--text-accent); \}\
+\
+        .show .chess-piece \{ opacity: 1; \}\
+        .show .pos-1 \{ transform: translateX(-50%) scale(1); \}\
+        .show .pos-2 \{ transform: translateY(-50%) scale(1); \}\
+        .show .pos-3 \{ transform: translateX(-50%) scale(1); \}\
+        .show .pos-4 \{ transform: translateY(-50%) scale(1); \}\
+        .show .pos-5 \{ transform: translate(-50%, -50%) scale(1.15); \}\
+\
+        .footer \{\
+            margin-top: 40px;\
+            padding: 50px 20px;\
+            width: 100%;\
+            background-color: #F4EFE6;\
+            text-align: center;\
+        \}\
+\
+        .qr-code \{\
+            width: 160px;\
+            height: 160px;\
+            margin: 15px 0;\
+            border: 5px solid white;\
+            border-radius: 10px;\
+        \}\
+\
+        .line-btn \{\
+            display: inline-block;\
+            background-color: #06C755;\
+            color: white;\
+            text-decoration: none;\
+            padding: 12px 30px;\
+            border-radius: 8px;\
+            font-weight: bold;\
+            margin-top: 10px;\
+        \}\
+\
+        @media (max-width: 480px) \{\
+            h1 \{ font-size: 1.8rem; \}\
+            .divination-area \{ width: 280px; height: 280px; \}\
+            .chess-piece \{ width: 55px; height: 55px; font-size: 1.5rem; \}\
+            .spirit-guide \{ font-size: 1rem; \}\
+        \}\
+    </style>\
+</head>\
+<body>\
+\
+    <div class="container">\
+        <h1>\uc0\u35937 \u26827 \u21340 \u21350 </h1>\
+\
+        <div class="intro-poetry">\
+            \uc0\u22312 \u36855 \u38695 \u35041 \u65292 \u25105 \u28858 \u20320 \u40670 \u20142 \u19968 \u30430 \u29128 <br>\
+            \uc0\u29031 \u35211 \u21069 \u26041 \u65292 \u20063 \u29031 \u35211 \u20320 \u33258 \u24049 \u12290 \
+        </div>\
+\
+        <div id="initial-action">\
+            <div class="meditation-box">\
+                <div class="meditation-hint">\uc0\u38748 \u24515 \u20901 \u24819 \u20320 \u30340 \u21839 \u38988 \u65292 \u25509 \u33879 \u25353 \u37397 \u25235 \u21350 </div>\
+                <div class="spirit-guide">\uc0\u35242 \u24859 \u30340 \u25351 \u23566 \u38728 \u65292 \u25105 \u24819 \u21839 ...........</div>\
+            </div>\
+            <button class="cta-btn" id="startBtn" onclick="startDivination()">\uc0\u31435 \u21363 \u38283 \u22987 \u21340 \u21350 </button>\
+        </div>\
+\
+        <div class="core-description">\
+            \uc0\u21340 \u21350 \u30340 \u20316 \u29992 \u19981 \u21482 \u26159 \u32102 \u31572 \u26696 \u65292 \u32780 \u26159 \u24171 \u20320 \u22312 \u36855 \u24792 \u26178 \u30475 \u28165 \u26041 \u21521 \u12290 <br><br>\
+            \uc0\u23427 \u33021 \u25552 \u20379 \u27770 \u31574 \u21443 \u32771 \u12289 \u20998 \u26512 \u21839 \u38988 \u26681 \u28304 \u12289 \u38928 \u28204 \u21487 \u33021 \u30340 \u36208 \u21521 \u65292 \u20006 \u35731 \u20320 \u25214 \u21040 \u26356 \u36969 \u21512 \u30340 \u35299 \u27770 \u26041 \u24335 \u12290 <br><br>\
+            \uc0\u27599 \u19968 \u27425 \u35299 \u21350 \u65292 \u20063 \u37117 \u26159 \u37325 \u26032 \u35469 \u35672 \u33258 \u24049 \u30340 \u26178 \u21051 \u65292 \u33021 \u25552 \u21319 \u33258 \u20449 \u12289 \u20419 \u36914 \u21453 \u24605 \u65292 \u35731 \u20320 \u26356 \u26377 \u21147 \u37327 \u38754 \u23565 \u20154 \u29983 \u30340 \u19981 \u30906 \u23450 \u12290 \
+        </div>\
+\
+        <div class="divination-area" id="board"></div>\
+        \
+        <div id="result-hint">\
+            \uc0\u25130 \u22294 \u21340 \u21350 \u32080 \u26524 \u22238 \u20659 <br>\
+            <span style="font-size: 0.8rem; font-weight: normal;">\uc0\u65288 \u19968 \u20491 \u21839 \u38988 \u19968 \u25499 \u12290 \u20197 \u31532 \u19968 \u27425 \u25277 \u30340 \u28858 \u20027 \u65289 </span>\
+            <br>\
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #FFDADA;">\
+                <div class="meditation-hint">\uc0\u38748 \u24515 \u20901 \u24819 \u20320 \u30340 \u21839 \u38988 \u65292 \u25509 \u33879 \u25353 \u37397 \u25235 \u21350 </div>\
+                <div class="spirit-guide" style="font-size: 0.95rem; margin-bottom: 10px;">\uc0\u35242 \u24859 \u30340 \u25351 \u23566 \u38728 \u65292 \u25105 \u24819 \u21839 ...........</div>\
+                <button class="secondary-btn" id="againBtn" onclick="startDivination()">\uc0\u21839 \u31532 \u20108 \u21350 </button>\
+            </div>\
+        </div>\
+    </div>\
+\
+    <footer class="footer">\
+        <p style="color:var(--text-accent); font-family: 'Noto Serif TC'; font-weight: bold; font-size: 1.2rem;">\uc0\u38928 \u32004 \u19968 \u23565 \u19968 \u35299 \u21350 </p>\
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://lin.ee/CJuYGTu" alt="Line QR" class="qr-code">\
+        <br>\
+        <a href="https://lin.ee/CJuYGTu" target="_blank" class="line-btn">\uc0\u40670 \u25802 \u36899 \u32080 \u21152 \u20837  LINE</a>\
+        <p style="font-size: 0.8rem; color: #999; margin-top: 15px;">LINE ID: @CJuYGTu</p>\
+    </footer>\
+\
+    <script>\
+        const allPieces = [\
+            \{ name: "\uc0\u24101 ", color: "red" \}, \{ name: "\u20181 ", color: "red" \}, \{ name: "\u20181 ", color: "red" \},\
+            \{ name: "\uc0\u30456 ", color: "red" \}, \{ name: "\u30456 ", color: "red" \}, \{ name: "\u20453 ", color: "red" \},\
+            \{ name: "\uc0\u20453 ", color: "red" \}, \{ name: "\u20620 ", color: "red" \}, \{ name: "\u20620 ", color: "red" \},\
+            \{ name: "\uc0\u28846 ", color: "red" \}, \{ name: "\u28846 ", color: "red" \}, \{ name: "\u20853 ", color: "red" \},\
+            \{ name: "\uc0\u20853 ", color: "red" \}, \{ name: "\u20853 ", color: "red" \}, \{ name: "\u20853 ", color: "red" \}, \{ name: "\u20853 ", color: "red" \},\
+            \{ name: "\uc0\u23559 ", color: "black" \}, \{ name: "\u22763 ", color: "black" \}, \{ name: "\u22763 ", color: "black" \},\
+            \{ name: "\uc0\u35937 ", color: "black" \}, \{ name: "\u35937 ", color: "black" \}, \{ name: "\u36554 ", color: "black" \},\
+            \{ name: "\uc0\u36554 ", color: "black" \}, \{ name: "\u39340 ", color: "black" \}, \{ name: "\u39340 ", color: "black" \},\
+            \{ name: "\uc0\u21253 ", color: "black" \}, \{ name: "\u21253 ", color: "black" \}, \{ name: "\u21330 ", color: "black" \},\
+            \{ name: "\uc0\u21330 ", color: "black" \}, \{ name: "\u21330 ", color: "black" \}, \{ name: "\u21330 ", color: "black" \}, \{ name: "\u21330 ", color: "black" \}\
+        ];\
+\
+        function startDivination() \{\
+            const initialAction = document.getElementById('initial-action');\
+            const againBtn = document.getElementById('againBtn');\
+            const board = document.getElementById('board');\
+            const hint = document.getElementById('result-hint');\
+\
+            initialAction.style.display = "none";\
+            againBtn.disabled = true;\
+            againBtn.innerText = "\uc0\u38748 \u24515 \u39023 \u20687 \u20013 ...";\
+            \
+            board.style.display = "block";\
+            board.innerHTML = "";\
+            board.classList.remove('show');\
+\
+            let shuffled = [...allPieces].sort(() => 0.5 - Math.random());\
+            let selected = shuffled.slice(0, 5);\
+\
+            selected.forEach((piece, index) => \{\
+                const div = document.createElement('div');\
+                div.className = `chess-piece piece-$\{piece.color\} pos-$\{index + 1\}`;\
+                div.innerText = piece.name;\
+                board.appendChild(div);\
+            \});\
+\
+            setTimeout(() => \{\
+                board.classList.add('show');\
+                hint.style.display = "block";\
+                againBtn.disabled = false;\
+                againBtn.style.display = "block";\
+                againBtn.innerText = "\uc0\u21839 \u31532 \u20108 \u21350 ";\
+                \
+                board.scrollIntoView(\{ behavior: 'smooth', block: 'center' \});\
+            \}, 100);\
+        \}\
+    </script>\
+</body>\
+</html>}
